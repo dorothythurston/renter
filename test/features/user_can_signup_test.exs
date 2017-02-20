@@ -5,7 +5,8 @@ defmodule AddUsersTest do
     navigate_to("/signup")
 
     fill_in("user[email]", "email@email.com")
-    fill_in("user[password_digest]", "password")
+    fill_in("user[password]", "password")
+    fill_in("user[password_confirmation]", "password")
     submit("user")
 
     assert visible_page_text  =~ gettext("Successfully signed up!")

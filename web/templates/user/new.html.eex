@@ -1,24 +1,29 @@
 <h1><%= gettext("Sign up") %></h1>
 
- <%= form_for @changeset, user_path(@conn, :create), fn form -> %>
-
-    <%= if @changeset.action do %>
-      <p><%= gettext("Oops! Something went wrong.") %></p>
-    <% end %>
-
-    <div class="user__email">
-      <%= label form, :email %>
-      <%= email_input form, :email, required: true %>
-      <%= error_tag form, :email %>
-    </div>
-
-    <div class="user__password">
-      <%= label form, :password %>
-      <%= password_input form, :password_digest, required: true %>
-      <%= error_tag form, :password %>
-    </div>
-
-    <div class="user__submit">
-      <%= submit gettext("Sign up"), data: [role: "submit-user"] %>
-    </div>
+<%= form_for @changeset, user_path(@conn, :create), fn form -> %>
+  <%= if @changeset.action do %>
+    <p><%= gettext("Oops! Something went wrong.") %></p>
   <% end %>
+
+  <div class="user__email">
+    <%= label form, :email %>
+    <%= email_input form, :email, required: true %>
+    <%= error_tag form, :email %>
+  </div>
+
+  <div class="user__password">
+    <%= label form, :password %>
+    <%= password_input form, :password, required: true %>
+    <%= error_tag form, :password %>
+  </div>
+
+  <div class="user__password__confirmation">
+    <%= label form, :password_confirmation %>
+    <%= password_input form, :password_confirmation, required: true %>
+    <%= error_tag form, :password_confirmation %>
+  </div>
+
+  <div class="user__submit">
+    <%= submit gettext("Sign up"), data: [role: "submit-user"] %>
+  </div>
+<% end %>
