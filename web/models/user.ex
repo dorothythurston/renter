@@ -1,6 +1,5 @@
 defmodule Renter.User do
   use Renter.Web, :model
-  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
   alias Renter.Password
 
   schema "users" do
