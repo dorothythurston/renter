@@ -4,10 +4,13 @@ use Mix.Config
 # you can enable the server option below.
 config :renter, Renter.Endpoint,
   http: [port: 4001],
-  server: false
+  server: true
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+# Start Hound for PhantomJs
+config :hound, driver: "phantomjs"
 
 # Configure your database
 config :renter, Renter.Repo,
