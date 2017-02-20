@@ -17,8 +17,10 @@ defmodule Renter.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", DashboardController, :show
-    get "/signup", UserController, :new
+    get "/sign_up", UserController, :new, as: :sign_up
     resources "/users", UserController, only: [:create]
+    get "/sign_in", SessionController, :new, as: :sign_in
+    resources "/sessions", SessionController, only: [:create]
   end
 
   # Other scopes may use custom stacks.

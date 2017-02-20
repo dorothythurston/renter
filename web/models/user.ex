@@ -1,6 +1,7 @@
 defmodule Renter.User do
   use Renter.Web, :model
   import Comeonin.Bcrypt, only: [hashpwsalt: 1]
+  alias Renter.Password
 
   schema "users" do
     field :email, :string
@@ -27,11 +28,6 @@ defmodule Renter.User do
   end
 
   defp hash_password(changeset) do
-    if password = get_change(changeset, :password) do
-      changeset
-      |> put_change(:password_digest, hashpwsalt(password))
-    else
-      changeset
-    end
+    Password.encrypt(changeset)
   end
 end

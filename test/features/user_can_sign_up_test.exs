@@ -2,7 +2,7 @@ defmodule AddUsersTest do
   use Renter.FeatureCase
 
   test "user sign up" do
-    navigate_to("/signup")
+    navigate_to("/sign_up")
 
     fill_in("user[email]", "email@email.com")
     fill_in("user[password]", "password")

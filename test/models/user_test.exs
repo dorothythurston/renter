@@ -39,6 +39,6 @@ defmodule Renter.UserTest do
     changeset = User.changeset(%User{}, invalid_attrs)
 
     assert {:error, changeset} = Renter.Repo.insert(changeset)
-    assert changeset.errors[:password_confirmation] == {"passwords do not match", []}
+    assert changeset.errors[:password_confirmation] == {"passwords do not match", [validation: :confirmation]}
   end
 end

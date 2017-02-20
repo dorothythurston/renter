@@ -18,4 +18,8 @@ defmodule FeatureHelpers do
   def submit(role) do
     click_role("submit-#{role}")
   end
+
+  def role_visible?(role_name) do
+    element?(:css, "[data-role=#{role_name}]")
+  end
 end
