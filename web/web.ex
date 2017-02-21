@@ -52,7 +52,7 @@ defmodule Renter.Web do
       import Renter.Router.Helpers
       import Renter.ErrorHelpers
       import Renter.Gettext
-      import Renter.ViewHelpers, only: [signed_in?: 1]
+      import Renter.ViewHelpers, only: [current_user: 1, signed_in?: 1]
     end
   end
 

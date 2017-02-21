@@ -13,6 +13,13 @@ defmodule Renter.SessionController do
       |> sign_in(user_params["password"], conn)
   end
 
+  def delete(conn, _params) do
+    conn
+    |> delete_session(:current_user_id)
+    |> put_flash(:info, gettext("You have been logged out"))
+    |> redirect(to: sign_in_path(conn, :new))
+  end
+
   defp sign_in(user, _, conn) when is_nil(user) do
     conn
       |> put_flash(:error, gettext("Could not find a user with that username."))

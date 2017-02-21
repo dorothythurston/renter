@@ -7,10 +7,6 @@ defmodule Renter.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-
-    if Mix.env == :test do
-      plug Renter.Plug.SessionBackdoor
-    end
   end
 
   pipeline :api do
@@ -18,6 +14,10 @@ defmodule Renter.Router do
   end
 
   pipeline :require_authentication do
+    if Mix.env == :test do
+      plug Renter.Plug.SessionBackdoor
+    end
+
     plug Renter.Plug.Authenticate
   end
 
@@ -34,6 +34,7 @@ defmodule Renter.Router do
     pipe_through [:browser, :require_authentication]
 
     get "/", DashboardController, :show
+    resources "/sessions", SessionController, only: [:delete]
   end
   # Other scopes may use custom stacks.
   # scope "/api", Renter do

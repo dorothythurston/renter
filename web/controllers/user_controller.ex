@@ -13,8 +13,9 @@ defmodule Renter.UserController do
     changeset = User.changeset(%User{}, user_params)
 
     case Repo.insert(changeset) do
-      {:ok, _} ->
+      {:ok, user} ->
         conn
+        |> put_session(:current_user_id, user.id)
         |> put_flash(:info, gettext("Successfully signed up!"))
         |> redirect(to: dashboard_path(conn, :show))
       {:error, changeset} ->
